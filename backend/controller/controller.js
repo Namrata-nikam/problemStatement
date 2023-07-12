@@ -9,10 +9,16 @@ const getcontractId = async (req, res) => {
     console.log("contractInstance: " ,ethers)
     const { name,symbol } = req.body
 
-    const contractId = await ethers.ethers.deployContract("TestingContract",{name: name,symbol: symbol})
-
+    // try{
+  
+      const contractId = await ethers.ethers.deployContract("TestingContract",{name: name,symbol: symbol})
       await contractId.waitForDeployment();
       console.log("contractId: ",contractId)
+  
+    // } catch {
+    //   res.status(500).json({ message: console.error() });
+    // }
+
       // res.status(200).json({ data: contractId });
     // res.status(500).json({ message: "contract Id not found" });
   

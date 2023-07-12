@@ -12,6 +12,8 @@ async function main() {
 
   await basicDeploymemt.deployed();
 
+  const contractAdress = basicDeploymemt.address
+
   console.log(
     `Smart Contract Address of Happiness Contract deployed to ${basicDeploymemt.address}`
   );
@@ -19,7 +21,9 @@ async function main() {
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main().catch((error) => {
-  console.error(error);
-  process.exitCode = 1;
-});
+// main().catch((error) => {
+//   console.error(error);
+//   process.exitCode = 1;
+// });
+
+module.exports = { contractAdress };
