@@ -28,3 +28,6 @@
   margin: 2px;
   padding: 4px;
 }
+.error{
+  background-color: red;
+}

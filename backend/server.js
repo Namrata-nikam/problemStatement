@@ -1,5 +1,6 @@
 const express = require("express")
 const mongoose = require("mongoose")
+require("dotenv").config();
 const app = express()
 const router = require("./routes/index");
 const errorHandler = require("./middleware/errorHandler");

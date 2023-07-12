@@ -1,26 +1,21 @@
 const Contractmodel = require('../models/contractmodel')
+const ethers = require('hardhat')
 
-const getcontractId = (req, res) => {
+const getcontractId = async (req, res) => {
     console.log("inside getContractId");
-    console.log("the request body is:", req.body.name,req.body.symbol);
-
+    console.log("the request body is:");
+    console.log("name: ",req.body.name);
+    console.log("symbol: ",req.body.symbol)
+    console.log("contractInstance: " ,ethers)
     const { name,symbol } = req.body
 
-    if(name && symbol)
-    {
-        const contractId = "abcd123456"
-        try {
-            const contractmodel = new Contractmodel({ 
-              contractId: contractId })
-            contractmodel.save()
-            res.send(contractmodel)
-          } catch (err) {
-            console.log(err)
-            res.status(500).json({ message: "contractmodel not created" });
-          }
-    }
+    const contractId = await ethers.ethers.deployContract("TestingContract",{name: name,symbol: symbol})
+
+      await contractId.waitForDeployment();
+      console.log("contractId: ",contractId)
+      // res.status(200).json({ data: contractId });
+    // res.status(500).json({ message: "contract Id not found" });
   
-    res.status(200).json({ message: "get one id store" });
   };
 
   module.exports = { getcontractId };
