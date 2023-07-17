@@ -6,26 +6,21 @@
 // global scope, and execute the script.
 const hre = require("hardhat");
 
-async function main(name,symbol) {
-  console.log("name ",name,"symbol ",symbol)
+async function main() {
   const BasicDeploymemt = await hre.ethers.getContractFactory("Testing");
-  const basicDeploymemt = await BasicDeploymemt.deploy(name, symbol);
+  const basicDeploymemt = await BasicDeploymemt.deploy('Testing', 'Test');
 
   await basicDeploymemt.deployed();
-
-  // const contractAdress = basicDeploymemt.address
-
+  
   console.log(
     `Smart Contract Address of Happiness Contract deployed to ${basicDeploymemt.address}`
   );
+  
 }
-
-// main();
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
-main('Testing', 'Test').catch((error) => {
+
+main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
 });
-
-// module.exports = { contractAdress };

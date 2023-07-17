@@ -5,41 +5,41 @@ import axios from "axios";
 function App() {
   const [name, setName] = useState("");
   const [symbol, setSymbol] = useState("");
-  const [address, setAddress] = useState("");
+  // const [address, setAddress] = useState("");
   const [errorMessage, setErrorMessage] = useState("")
 
-  const metamaskConnection = async () => {
+  // const metamaskConnection = async () => {
 
-    console.log("$$$$$$inside metamask connection $$$$$$$$$")
+  //   console.log("$$$$$$inside metamask connection $$$$$$$$$")
 
-    if (window.ethereum) {
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((res) => {
-          // Return the address of the wallet
-          console.log(res[0], "res[0] shown");
-          setAddress(res[0]);
-        })
-        .catch((err) => {
-          setErrorMessage(err);
-        });
-    } else {
-      setErrorMessage("install metamask extension!!");
-    }
-  }
+  //   if (window.ethereum) {
+  //     window.ethereum
+  //       .request({ method: "eth_requestAccounts" })
+  //       .then((res) => {
+  //         // Return the address of the wallet
+  //         console.log(res[0], "res[0] shown");
+  //         setAddress(res[0]);
+  //       })
+  //       .catch((err) => {
+  //         setErrorMessage(err);
+  //       });
+  //   } else {
+  //     setErrorMessage("install metamask extension!!");
+  //   }
+  // }
 
   const handleDeploy = async () => {
     console.log("name:", name, "symbol:", symbol);
     
-    metamaskConnection()
+    // metamaskConnection()
 
-    console.log("account address",address);
-    if(address){
+    // console.log("account address",address);
+    // if(address){
       axios
       .post("http://localhost:4000/api/contractdata", {
-        address: address,
+        // address: address,
         name: name,
-        symbol: name,
+        symbol: symbol,
       })
       .then((response) => {
         console.log(response);
@@ -48,7 +48,7 @@ function App() {
         console.log(error);
         setErrorMessage(error);
       });
-    }
+    // }
 
   };
 
