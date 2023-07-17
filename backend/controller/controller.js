@@ -1,5 +1,5 @@
 const Contractmodel = require('../models/contractmodel')
-const deployfile = require('../scripts/deploy')
+const deployfile = require('../../Hardhat/scripts/deploy')
 const { spawn } = require('child_process');
 
 const getcontractId = async (req, res) => {
@@ -12,8 +12,9 @@ const getcontractId = async (req, res) => {
     const { name,symbol } = req.body
 
     // Execute the hardhat deploy command
-    const deployProcess = spawn('npx', ['hardhat', 'run', deployfile , '--network', 'polygonMumbai']);
+    // const deployProcess = spawn('npx', ['hardhat', 'run', deployfile , '--network', 'polygonMumbai']);
   
+    const deployProcess = spawn('node',deployfile);
     // Capture the command output and errors
     let output = '';
     let error = '';
